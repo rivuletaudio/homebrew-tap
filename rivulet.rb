@@ -5,7 +5,7 @@ class Rivulet < Formula
   sha256 "cfb90d17ec17c495c7b1c0265bcdf213314949ade2c2b211918c54f6e3db9b56"
 
   # depends_on "cmake" => :build
-  depends_on :python
+  depends_on "python"
   depends_on "boost-python"
   depends_on "libtorrent-rasterbar" => "--with-python"
   depends_on "flac"
@@ -14,11 +14,11 @@ class Rivulet < Formula
   def install
 
     # install python dependencies into brew installed python
-    system "pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "beautifulsoup4"
-    system "pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "mock"
-    system "pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "tornado>=4.1"
-    system "pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "lxml"
-    system "pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "pyyaml"
+    system "#{HOMEBREW_PREFIX}/bin/pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "beautifulsoup4"
+    system "#{HOMEBREW_PREFIX}/bin/pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "mock"
+    system "#{HOMEBREW_PREFIX}/bin/pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "tornado>=4.1"
+    system "#{HOMEBREW_PREFIX}/bin/pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "lxml"
+    system "#{HOMEBREW_PREFIX}/bin/pip2", "install", "--install-option=--prefix=#{HOMEBREW_PREFIX}", "pyyaml"
     
     File.write("./run-osx.sh", "#!/bin/sh\nexport PATH=#{HOMEBREW_PREFIX}/bin:$PATH\nexec #{HOMEBREW_PREFIX}/bin/python2 #{prefix}/server/webserver/webserver.py")
     File.new("./run-osx.sh").chmod(0777)
@@ -35,7 +35,7 @@ class Rivulet < Formula
       FileUtils.rmdir("/Applications/Rivulet.app")
     end
     
-    FileUtils.cp_r("#{prefix}/osx-agent/Rivulet.app", "/Applications/Rivulet.app")
+    File.link("#{prefix}/osx-agent/Rivulet.app", "/Applications/Rivulet.app")
   end
 
   test do
