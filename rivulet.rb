@@ -23,19 +23,18 @@ class Rivulet < Formula
     File.write("./run-osx.sh", "#!/bin/sh\nexport PATH=#{HOMEBREW_PREFIX}/bin:$PATH\nexec #{HOMEBREW_PREFIX}/bin/python2 #{prefix}/server/webserver/webserver.py")
     File.new("./run-osx.sh").chmod(0777)
     
-    FileUtils.cp_r "./", "#{prefix}"
-    
     if File.exist?("#{HOMEBREW_PREFIX}/bin/rivulet")
       File.unlink("#{HOMEBREW_PREFIX}/bin/rivulet")
     end
+ 
+    if File.exist?("/Applications/Rivulet.app")
+      FileUtils.rm_r("/Applications/Rivulet.app")
+    end
+
+    FileUtils.cp_r "./", "#{prefix}"
     
     File.link("#{prefix}/run-osx.sh", "#{HOMEBREW_PREFIX}/bin/rivulet")
-
-    if File.exist?("/Applications/Rivulet.app")
-      FileUtils.rmdir("/Applications/Rivulet.app")
-    end
-    
-    File.link("#{prefix}/osx-agent/Rivulet.app", "/Applications/Rivulet.app")
+    FileUtils.cp_r("#{prefix}/osx-agent/Rivulet.app", "/Applications/Rivulet.app")
   end
 
   test do
