@@ -1,8 +1,8 @@
 class Rivulet < Formula
   homepage "http://rivulet.audio/"
-  url "https://github.com/rivuletaudio/rivulet/archive/v0.1.2.tar.gz"
-  version "0.1.2"
-  sha256 "af8e391e461c40974800f838d7dfd0e3781351724685eff1daaf00965bc532e7"
+  url "https://github.com/rivuletaudio/rivulet/archive/v0.1.3.tar.gz"
+  version "0.1.3"
+  sha256 "02b05645ea28bae79d3798b1974e003fa2fb69e9a98a8a34d6012df9b40a2e4e"
 
   # depends_on "cmake" => :build
   depends_on "python"
