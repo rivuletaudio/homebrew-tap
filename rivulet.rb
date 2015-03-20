@@ -1,6 +1,6 @@
 class Rivulet < Formula
   homepage "http://rivulet.audio/"
-  url "https://github.com/rivuletaudio/rivulet/archive/v0.2.0.tar.gz"
+  url "https://github.com/rivuletaudio/rivulet/releases/download/v0.2.0/rivulet-0.2.0.tar.gz"
   version "0.2.0"
   sha256 "a8f6e97991825a13ab1457ba17bcaf1d8522445f46717a7e30b534429a47a167"
 
